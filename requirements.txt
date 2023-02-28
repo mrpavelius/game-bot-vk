@@ -1,0 +1,5 @@
+beautifulsoup4==4.10.0
+black==21.12b0
+pip-chill==1.0.1
+python-dotenv==0.19.2
+vk-api==11.9.7
