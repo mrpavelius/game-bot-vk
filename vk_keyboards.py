@@ -3,9 +3,6 @@ from vk_api.keyboard import VkKeyboard, VkKeyboardColor
 keyboards = {}
 
 first_keyboard = VkKeyboard()
-first_keyboard.add_button("Топ игр", VkKeyboardColor.PRIMARY)
-first_keyboard.add_button("Статистика", VkKeyboardColor.PRIMARY)
-first_keyboard.add_line()
 first_keyboard.add_button("Случайная игра", VkKeyboardColor.PRIMARY)
 first_keyboard.add_line()
 first_keyboard.add_button("Следующая страница", VkKeyboardColor.POSITIVE)
@@ -17,9 +14,7 @@ second_keyboard = VkKeyboard()
 second_keyboard.add_button("О проекте", VkKeyboardColor.PRIMARY)
 second_keyboard.add_button("Создатели", VkKeyboardColor.PRIMARY)
 second_keyboard.add_line()
-second_keyboard.add_openlink_button(
-    "Репозиторий на GitHub", "https://github.com/mrpavchu/GameBot"
-)
+second_keyboard.add_openlink_button("Репозиторий на GitHub", "https://github.com/mrpavchu/GameBot")
 second_keyboard.add_line()
 second_keyboard.add_button("Предыдущая страница", VkKeyboardColor.POSITIVE)
 second_keyboard.add_line()

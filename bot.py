@@ -5,8 +5,6 @@ from functools import partial
 from vk_api import VkApi
 from vk_api.bot_longpoll import VkBotEventType, VkBotLongPoll
 
-from scrapers.steam_scraper import playing_games_now
-from scrapers.top_games_scraper import get_top_games
 from vk_keyboards import keyboards
 
 
@@ -46,8 +44,6 @@ class Bot:
             {
                 "помощь": self._send_help,
                 "информация": self._send_information,
-                "топ игр": self._send_top_games,
-                "статистика": self._send_statistics,
                 "случайная игра": self._send_platform_selection,
                 "компьютер": partial(self._send_random_game, "компьютер"),
                 "смартфон": partial(self._send_random_game, "смартфон"),
@@ -66,17 +62,6 @@ class Bot:
     def _send_information(self):
         self.page_number = 2
         self._send_msg(self.commands.format(2), keyboards[2].get_keyboard())
-
-    def _send_top_games(self):
-        top_games = "Создано на основе данных с сайта StopGame.\n\n"
-        top_games += "\n".join(get_top_games(5))
-        self._send_msg(top_games)
-
-    def _send_statistics(self):
-        statistics = (
-            f"По данным серверов Steam.\n\n{chr(10).join(playing_games_now(5))}"
-        )
-        self._send_msg(statistics)
 
     def _send_platform_selection(self):
         self.is_platform_requested = True
@@ -103,9 +88,7 @@ class Bot:
 
     def _send_offer_to_return_keyboard(self):
         self.is_bool_keyboard = True
-        self._send_msg(
-            "Клавиатура закрыта", keyboards[self.page_number].get_empty_keyboard()
-        )
+        self._send_msg("Клавиатура закрыта", keyboards[self.page_number].get_empty_keyboard())
         self._send_msg("Вы случайно закрыли?", keyboards["bool"].get_keyboard())
 
     def _send_bool_result(self, message):
@@ -128,14 +111,10 @@ class Bot:
         )
 
     def _send_info_about_bot(self):
-        self._send_msg(
-            "Школьный проект для демонстрации возможностей бота.\nСоздан в 2021 году."
-        )
+        self._send_msg("Школьный проект для демонстрации возможностей бота.\nСоздан в 2021 году.")
 
     def _send_info_about_creators(self):
-        self._send_msg(
-            "Чуркин Павел, ученик 9Б класса\nСарапов Станислав, ученик 9Б класса"
-        )
+        self._send_msg("Чуркин Павел, ученик 9Б класса\nСарапов Станислав, ученик 9Б класса")
 
     def _send_reaction_to_unknown_command(self):
         self._send_msg(
